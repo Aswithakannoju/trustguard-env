@@ -1,5 +1,6 @@
 from core.tasks import SimpleTask
 from core.env import Environment
+import random
 
 class BaselineAgent:
     def __init__(self):
@@ -13,10 +14,12 @@ class BaselineAgent:
         while not done:
             actions = self.task.get_possible_actions(state)
 
-            # pick first action (simple logic)
-            action = actions[0]
+            action = random.choice(actions)
 
             observation = self.env.step(action)
+
+            # 🔥 update state
+            state = self.env.state
 
             print(f"Action: {action.name}")
             print(f"Result: {observation.result}")
