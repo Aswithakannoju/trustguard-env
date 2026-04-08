@@ -1,0 +1,12 @@
+[project]
+name = "trustguard-openenv"
+version = "0.1.0"
+description = "TrustGuard OpenEnv Environment for fake product detection"
+authors = [
+    {name = "Aswitha Kannoju"}
+]
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "openai"
+]
