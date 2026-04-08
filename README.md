@@ -2,22 +2,20 @@
 
 ## 📌 Overview
 
-**TrustGuard** is a real-world OpenEnv environment designed to simulate **fake product detection and authenticity verification**.
+**TrustGuard** is a real-world OpenEnv environment that simulates **fake product detection and authenticity verification**.
 
-It evaluates products using:
-
-* Brand authenticity
-* Seller verification
-* Customer reviews
-
-The goal is to help AI agents learn how to assign a **trust score (0–1)** to products.
+It allows AI agents to evaluate product trustworthiness based on multiple real-world signals and generate a **trust score between 0 and 1**.
 
 ---
 
 ## 🧠 Problem Statement
 
-Counterfeit and fake products are a major challenge in online marketplaces.
-TrustGuard simulates a system that identifies suspicious products and estimates their authenticity.
+Fake and counterfeit products are a major issue in online marketplaces.
+TrustGuard models a system that detects suspicious products using:
+
+* Brand authenticity
+* Seller credibility
+* Customer review analysis
 
 ---
 
@@ -25,10 +23,10 @@ TrustGuard simulates a system that identifies suspicious products and estimates 
 
 ### 🔹 Observation Space
 
-Each product contains:
+Each product is represented with:
 
-* `brand_verified` → True/False
-* `seller_verified` → True/False
+* `brand_verified` → Boolean
+* `seller_verified` → Boolean
 * `review_score` → Integer (1–5)
 
 ---
@@ -41,11 +39,11 @@ Each product contains:
 
 ### 🔹 Reward Function
 
-Partial rewards are given:
+The environment provides **partial rewards**:
 
 * +0.3 → Brand verified
 * +0.3 → Seller verified (medium & hard tasks)
-* +0.4 → Good reviews (hard task)
+* +0.4 → High review score (hard task)
 
 Final score is normalized between **0.0 and 1.0**
 
@@ -71,7 +69,7 @@ python inference.py
 
 ## 📊 Output Format
 
-Logs follow strict format:
+The inference script logs:
 
 ```
 [START]
@@ -79,37 +77,55 @@ Logs follow strict format:
 [END]
 ```
 
-Each task outputs a score between **0 and 1**
+Each task returns a score between **0 and 1**.
 
 ---
 
 ## 🌐 API (Hugging Face)
 
-Endpoint:
+### Base URL
+
+Your deployed Space:
 
 ```
-POST /reset
+https://aswi18-trustgurad-env.hf.space
 ```
 
-Response:
+### Endpoints
 
-```
+* `GET /` → UI dashboard
+* `POST /reset` → Required validation endpoint
+* `GET /reset` → Testing support
+
+### Example Response
+
+```json
 {"status": "ok"}
 ```
 
 ---
 
-## 🐳 Docker
+## 🖥️ UI Preview
 
-Build:
+A simple web interface is available at `/`:
 
-```
+* Displays project overview
+* Allows testing API with a button
+* Shows live API response
+
+---
+
+## 🐳 Docker Support
+
+### Build
+
+```bash
 docker build -t trustguard .
 ```
 
-Run:
+### Run
 
-```
+```bash
 docker run trustguard
 ```
 
@@ -123,8 +139,10 @@ inference.py
 tasks.py
 openenv.yaml
 Dockerfile
-app.py
 pyproject.toml
+uv.lock
+server/
+   app.py
 README.md
 ```
 
@@ -134,11 +152,13 @@ README.md
 
 * ✔ step() / reset() implemented
 * ✔ 3 tasks (easy → hard)
-* ✔ Reward system (0–1)
+* ✔ Reward system (0–1 range)
 * ✔ OpenAI client usage
-* ✔ Dockerized
-* ✔ Hugging Face deployed
-* ✔ Inference reproducible
+* ✔ Structured logging (START / STEP / END)
+* ✔ Dockerized environment
+* ✔ Hugging Face deployment
+* ✔ API validation endpoint `/reset`
+* ✔ Multi-mode deployment support
 
 ---
 
@@ -146,7 +166,7 @@ README.md
 
 * Image/logo verification using computer vision
 * NLP-based review analysis
-* Fraud detection models
+* Advanced fraud detection models
 
 ---
 
