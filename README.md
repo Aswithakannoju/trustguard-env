@@ -2,19 +2,20 @@
 
 ## 📌 Overview
 
-**TrustGuard** is a real-world OpenEnv environment that simulates **fake product detection and authenticity verification**.
+**TrustGuard** is a real-world OpenEnv environment designed to simulate **fake product detection and authenticity verification**.
 
-It allows AI agents to evaluate product trustworthiness based on multiple real-world signals and generate a **trust score between 0 and 1**.
+It enables AI agents to evaluate products based on multiple real-world signals and generate a **trust score between 0.0 and 1.0**.
 
 ---
 
 ## 🧠 Problem Statement
 
-Fake and counterfeit products are a major issue in online marketplaces.
-TrustGuard models a system that detects suspicious products using:
+Counterfeit and fake products are a major challenge in modern e-commerce platforms.
+
+TrustGuard simulates a system that detects suspicious products using:
 
 * Brand authenticity
-* Seller credibility
+* Seller verification
 * Customer review analysis
 
 ---
@@ -23,7 +24,7 @@ TrustGuard models a system that detects suspicious products using:
 
 ### 🔹 Observation Space
 
-Each product is represented with:
+Each product contains:
 
 * `brand_verified` → Boolean
 * `seller_verified` → Boolean
@@ -61,7 +62,7 @@ Final score is normalized between **0.0 and 1.0**
 
 ## ▶️ Running Inference
 
-```bash
+```bash id="w5zhqy"
 python inference.py
 ```
 
@@ -69,25 +70,23 @@ python inference.py
 
 ## 📊 Output Format
 
-The inference script logs:
+The inference script strictly follows:
 
-```
+```id="sy0xlg"
 [START]
 [STEP]
 [END]
 ```
 
-Each task returns a score between **0 and 1**.
+Each task produces a score between **0.0 and 1.0**
 
 ---
 
-## 🌐 API (Hugging Face)
+## 🌐 API (Hugging Face Deployment)
 
 ### Base URL
 
-Your deployed Space:
-
-```
+```id="y0y2hy"
 https://aswi18-trustgurad-env.hf.space
 ```
 
@@ -99,18 +98,18 @@ https://aswi18-trustgurad-env.hf.space
 
 ### Example Response
 
-```json
+```json id="2wrsqr"
 {"status": "ok"}
 ```
 
 ---
 
-## 🖥️ UI Preview
+## 🖥️ UI Interface
 
-A simple web interface is available at `/`:
+A simple web UI is available at `/`:
 
-* Displays project overview
-* Allows testing API with a button
+* Displays system overview
+* Allows API testing via button
 * Shows live API response
 
 ---
@@ -119,13 +118,13 @@ A simple web interface is available at `/`:
 
 ### Build
 
-```bash
+```bash id="g9n76g"
 docker build -t trustguard .
 ```
 
 ### Run
 
-```bash
+```bash id="gi9y2j"
 docker run trustguard
 ```
 
@@ -133,7 +132,7 @@ docker run trustguard
 
 ## 📁 Project Structure
 
-```
+```id="jrv0h4"
 env.py
 inference.py
 tasks.py
@@ -154,18 +153,19 @@ README.md
 * ✔ 3 tasks (easy → hard)
 * ✔ Reward system (0–1 range)
 * ✔ OpenAI client usage
-* ✔ Structured logging (START / STEP / END)
+* ✔ Structured logs (START / STEP / END)
 * ✔ Dockerized environment
 * ✔ Hugging Face deployment
-* ✔ API validation endpoint `/reset`
-* ✔ Multi-mode deployment support
+* ✔ API endpoint `/reset`
+* ✔ Multi-mode deployment ready
+* ✔ server/app.py with main() entrypoint
 
 ---
 
 ## 🚀 Future Improvements
 
 * Image/logo verification using computer vision
-* NLP-based review analysis
+* NLP-based review sentiment analysis
 * Advanced fraud detection models
 
 ---
