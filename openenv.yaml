@@ -1,0 +1,8 @@
+name: trustguard_env
+
+tasks:
+  - easy
+  - medium
+  - hard
+
+entrypoint: env.py
