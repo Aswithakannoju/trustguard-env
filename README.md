@@ -1,29 +1,29 @@
-# 🚀 TrustGuard OpenEnv Environment
+# 🛡️ TrustGuard OpenEnv Environment
 
 ## 📌 Overview
 
 **TrustGuard** is a real-world OpenEnv environment designed to simulate **fake product detection and authenticity verification**.
 
-It evaluates products based on:
+It evaluates products using:
 
 * Brand authenticity
 * Seller verification
-* Customer review quality
+* Customer reviews
 
-The environment enables AI agents to interact and learn how to assess product trustworthiness using structured signals.
+The goal is to help AI agents learn how to assign a **trust score (0–1)** to products.
 
 ---
 
 ## 🧠 Problem Statement
 
-Fake and counterfeit products are a major issue in e-commerce.
-TrustGuard simulates a system that helps identify suspicious products and assign a **trust score (0–1)**.
+Counterfeit and fake products are a major challenge in online marketplaces.
+TrustGuard simulates a system that identifies suspicious products and estimates their authenticity.
 
 ---
 
 ## ⚙️ Environment Design
 
-### 🔹 State (Observation Space)
+### 🔹 Observation Space
 
 Each product contains:
 
@@ -41,13 +41,13 @@ Each product contains:
 
 ### 🔹 Reward Function
 
-Partial rewards are assigned:
+Partial rewards are given:
 
 * +0.3 → Brand verified
 * +0.3 → Seller verified (medium & hard tasks)
 * +0.4 → Good reviews (hard task)
 
-Final score is normalized between **0 and 1**.
+Final score is normalized between **0.0 and 1.0**
 
 ---
 
@@ -71,7 +71,7 @@ python inference.py
 
 ## 📊 Output Format
 
-The script logs:
+Logs follow strict format:
 
 ```
 [START]
@@ -79,38 +79,38 @@ The script logs:
 [END]
 ```
 
-Each task produces a score between **0.0 and 1.0**.
+Each task outputs a score between **0 and 1**
 
 ---
 
-## 🐳 Docker Support
+## 🌐 API (Hugging Face)
 
-Build:
-
-```bash
-docker build -t trustguard .
-```
-
-Run:
-
-```bash
-docker run trustguard
-```
-
----
-
-## 🌐 Hugging Face Deployment
-
-API Endpoint:
+Endpoint:
 
 ```
 POST /reset
 ```
 
-Example Response:
+Response:
 
-```json
+```
 {"status": "ok"}
+```
+
+---
+
+## 🐳 Docker
+
+Build:
+
+```
+docker build -t trustguard .
+```
+
+Run:
+
+```
+docker run trustguard
 ```
 
 ---
@@ -124,6 +124,8 @@ tasks.py
 openenv.yaml
 Dockerfile
 app.py
+pyproject.toml
+README.md
 ```
 
 ---
@@ -133,22 +135,22 @@ app.py
 * ✔ step() / reset() implemented
 * ✔ 3 tasks (easy → hard)
 * ✔ Reward system (0–1)
+* ✔ OpenAI client usage
 * ✔ Dockerized
-* ✔ HF Space deployed
+* ✔ Hugging Face deployed
 * ✔ Inference reproducible
 
 ---
 
 ## 🚀 Future Improvements
 
-* Image/logo verification using CV models
+* Image/logo verification using computer vision
 * NLP-based review analysis
-* Fraud pattern detection
+* Fraud detection models
 
 ---
 
 ## 👩‍💻 Author
-**Aswitha Kannoju**  
+
+**Aswitha Kannoju**
 Built for Meta AI x Scaler Hackathon
-
-
