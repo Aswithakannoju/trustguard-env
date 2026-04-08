@@ -1,12 +1,15 @@
 [project]
 name = "trustguard-openenv"
 version = "0.1.0"
-description = "TrustGuard OpenEnv Environment for fake product detection"
-authors = [
-    {name = "Aswitha Kannoju"}
-]
+description = "TrustGuard OpenEnv Environment"
+authors = [{ name = "Aswitha Kannoju" }]
+
 dependencies = [
     "fastapi",
     "uvicorn",
-    "openai"
+    "openai",
+    "openenv-core>=0.2.0"
 ]
+
+[project.scripts]
+server = "server.app:main"
