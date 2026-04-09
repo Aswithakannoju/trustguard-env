@@ -20,7 +20,7 @@ class TrustGuardEnv:
     def step(self, action):
         self.step_count += 1
         
-        score = 0.0
+        score = 0.05
         
         # Reward logic
         if self.state["brand_verified"]:
