@@ -173,4 +173,4 @@ README.md
 ## 👩‍💻 Author
 
 **Aswitha Kannoju**
-Built for Meta AI x Scaler Hackathon
+
